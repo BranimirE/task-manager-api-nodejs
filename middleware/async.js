@@ -1,9 +1,11 @@
+const { createCustomError } = require("../errors/custom-error")
+
 const asyncWrapper = (fn) => {
   return async (req, res, next) => {
     try {
       await fn(req, res, next)
-    } catch(e) {
-      res.status(500).send('Internal server error')
+    } catch(error) {
+      next(error)
     }
   }
 }

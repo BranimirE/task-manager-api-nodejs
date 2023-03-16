@@ -4,7 +4,7 @@ const asyncWrapper = require('../middleware/async');
 const router = express.Router();
 
 router.route('/').get(asyncWrapper(getAllTasks)).post(asyncWrapper(createTask))
-router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask)
+router.route('/:id').get(asyncWrapper(getTask)).patch(asyncWrapper(updateTask)).delete(asyncWrapper(deleteTask))
 
 module.exports = router
 
